@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name: Add PluginName
+* Plugin Name: NSBP Fix
 * Plugin URI: https://github.com/FreshyMichael/non-breaking-space-fix
 * Description: Fixes the random non breaking spaces conflict by replacing them with a single space. 
 * Version: 1.0.0
