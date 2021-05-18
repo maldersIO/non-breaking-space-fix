@@ -1,8 +1,8 @@
 <?php
 /**
 * Plugin Name: Add PluginName
-* Plugin URI: https://github.com/FreshyMichael/Plugin-Starter
-* Description: Add a Description
+* Plugin URI: https://github.com/FreshyMichael/non-breaking-space-fix
+* Description: Fixes the random non breaking spaces conflict by replacing them with a single space. 
 * Version: 1.0.0
 * Author: FreshySites
 * Author URI: https://freshysites.com/
@@ -16,6 +16,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 /* PluginName Start */
 //______________________________________________________________________________
 
+function fs_replace_content($content) {
+        $content = htmlentities($content, null, 'utf-8');
+        $content = str_replace("&nbsp;", " ", $content);
+        $content = html_entity_decode($content);
+    return $content;
+    }
+add_filter('the_content','fs_replace_content', 999999999);
 
 //______________________________________________________________________________
 // All About Updates
@@ -24,10 +31,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 require 'plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 // ***IMPORTANT*** Update this path to New Github Repository Master Branch Path
-	'https://github.com/FreshyMichael/Plugin-Starter',
+	'https://github.com/FreshyMichael/non-breaking-space-fix',
 	__FILE__,
 // ***IMPORTANT*** Update this to New Repository Master Branch Path
-	'Plugin-Starter'
+	'non-breaking-space-fix'
 );
 //Enable Releases
 $myUpdateChecker->getVcsApi()->enableReleaseAssets();
